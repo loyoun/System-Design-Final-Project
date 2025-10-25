@@ -1,0 +1,112 @@
+<!--
+Author: Logan Young
+Date: September 16th, 2025
+Modification History-
+
+Notes:
+This is the front page for the library management user interface.
+!-->
+
+<!doctype html>
+
+
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<title>Library Management System</title>
+		<link rel="stylesheet" type="text/css" href="css/Global.css">
+		<link rel="stylesheet" type="text/css" href="css/HomePage.css">
+	</head>
+
+	<body>
+		<header>
+			<h1 id="LMS">Library Management System</h1>
+			<h2>Home</h2>
+		</header>
+		
+		<div class="content">
+			<div class="userView">
+				<h3 class="viewHeading" id="UserViewHeading">User View</h3>
+				<!--<nav id="UserBar">
+					<ul>
+						<li>Welcome, User!</li>
+						<li></li>
+					</ul>
+				</nav>-->
+				<span id="Intro Text">
+					<p id="WelcomeMessage">Welcome, User!</p>
+					<p id="AccountLevel">Acount Level: Member</p>
+					<p id="CheckedOut">Books Currently Checked Out: 4, 8, 15</p>
+				</span>
+				
+				<div id="UserActions">
+					<!--<ul id="CheckReturnFormTabs">
+						<li><a href="#CheckOutField">Check Out</a></li>
+						<li><a href="#ReturnField">Return</a></li>
+					</ul>-->
+					<fieldset id="CheckOutField">
+						<legend>Check Out</legend>
+						<p>Select books to check out in Book View.</p>
+						<input type="button" value="Check Out">
+					</fieldset>
+					<fieldset id="ReturnField">
+						<legend>Return</legend>
+						<p>Select books to return in Book View.</p>
+						<input type="button" value="Return">
+					</fieldset>
+					<!--<fieldset id="HoldField">
+						<legend>Request Hold</legend>
+						<p>Select a book to request a hold on in Book View.</p>
+						<input type="button" value="Request Hold">
+					</fieldset>
+					<fieldset id="ProcurementRequest">
+						<legend>Procure</legend>
+						<p>Select a book to request procurement from another branch in Book View.</p>
+						<input type="button" value="Request Procurement">
+					</fieldset>-->
+					<fieldset id="SuggestionField">
+						<legend>Suggest Book</legend>
+						<form method="POST" id="SuggestionForm">
+							<label for="authorIn"><span>Author Name:</span>
+								<input type="text" name="Author" id="authorIn" placeholder="Author Name">
+							</label>
+							<label for="bookIn"><span>Book Title:</span>
+								<input type="text" name="BookTitle" id="bookIn" placeholder="Book Title">
+							</label>
+							<input type="button" value="Suggest" id="SuggestionSubmit">
+						</form>
+					</fieldset>
+				</div>
+			</div>
+			
+			<!-- In the future, this will query the book table which will include
+			links to the book covers as an attribute.-->
+			<div class="bookView">
+				<h3 class="viewHeading" id="BookViewHeading">Book View</h3>
+				<nav id="BookSections">
+					<ul>
+						<li class="active"><a href="#AllBooks">All Books</a></li>
+						<li><a href="#YourBooks">Your Books</a></li>
+					</ul>
+				</nav>
+				<div class="bookGrid" id="libraryBookGrid">
+					<p class="bookCover">Book 1</p>
+					<p class="bookCover">Book 2</p>
+					<p class="bookCover">Book 3</p>
+					<p class="bookCover">Book 4</p>
+					<p class="bookCover">Book 5</p>
+					<p class="bookCover">Book 6</p>
+					<p class="bookCover">Book 7</p>
+				</div>
+			</div>
+			
+		</div>
+		
+		<footer>
+			<p id="DateAccessed"></p>
+			<p id="SiteInfo">Designed by Logan Young</p>
+		</footer>
+	</body>
+	
+</html>

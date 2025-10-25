@@ -1,0 +1,99 @@
+/*
+Author: 		Logan Young
+Date Created: 	September 16th, 2025
+Date Modified:	October 23rd, 2025
+
+Notes:
+JavaScript for Home Page of LMS.
+*/
+
+
+// Navigation Tab Scripts
+function openBookTab(evt, bookTab) {
+	var i, bookGrid, navTabs;
+	bookGrid = document.getElementsByClassName("bookGrid");
+	for(i = 0; i < bookGrid.length; i++) {
+		bookGrid[i].style.display = "none";
+	}
+	navTabs = document.getElementById("NavTabs").children;
+	for(i = 0; i < navTabs.length; i++) {
+		navTabs[i].className = navTabs[i].className.replace(" active", "");
+	}
+	document.getElementById(bookTab).style.display = "grid";
+	evt.currentTarget.className += " active";
+}
+
+function openActionTab(evt, selectedTab) {
+	var i, actionTab, actionTabLinks;
+	actionTab = document.getElementsByClassName("actionTab");
+	for(i = 0; i < actionTab.length; i++) {
+		actionTab[i].style.display = "none";
+	}
+	actionTabLinks = document.getElementById("ActionTabLinks").children;
+	for(i = 0; i < actionTabLinks.length; i++) {
+		actionTabLinks[i].className = actionTabLinks[i].className.replace(" active", "");
+	}
+	document.getElementById(selectedTab).style.display = "block";
+	evt.currentTarget.className += " active";
+}
+//
+
+// event listeners to tell if book has been clicked
+var bookDivs = document.getElementsByClassName("bookBackground");
+for (const bookDiv of bookDivs) {
+	bookDiv.addEventListener("click", function(e) {
+		if(this.classList.contains("chosen")) {
+			this.className = this.className.replace("chosen", "");
+		}
+		else {
+			for(const bookDiv of bookDivs) {
+				bookDiv.className = bookDiv.className.replace(" chosen", "");
+			}
+			this.className += " chosen";
+		}
+	});
+}
+
+var checkOut = document.getElementById("CheckOutSubmit");
+var returns = document.getElementById("ReturnSubmit");
+var suggest = document.getElementById("SuggestSubmit");
+
+/*checkOut.addEventListener("submit", function(e) {
+	try {
+		selectedBooks = document.getElementsByClassName("chosen");
+		books = JSON.parse(document.getElementById("AllBooksJSON").text());
+		selectedBookTitle = selectedBooks[0].firstChild.innerText;
+		var bookID;
+		for(const book of books) {
+			if(selectedBookTitle == book.title) {
+				bookID = book.local_id;
+			}
+		}
+		if(document.getElementsByClassName("chosen")) {
+			if(selectedBooks.length = 1 && selectedBookTitle) {
+			}
+		$.ajax
+		}
+	} catch(error) {
+		console.error(error);
+	}
+});
+
+const actionForms = document.getElementsByClassName("actionForm");
+actionForms.forEach((actionForm) => {
+	actionForm.addEventListener("submit", function(e) {
+		e.preventDefault();
+		const actionFormData = new FormData(this);
+		
+		if(e.submitter) {
+			actionFormData.set(e.submitter.name, e.submitter.value);
+		}
+		
+		fetch(pagePath, {
+			method: "post",
+			body: formData
+		})
+			.then(response => console.log(response))
+			.catch((e) => console.error(e));
+	});
+});*/

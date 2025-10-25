@@ -1,0 +1,58 @@
+/*
+Author: Logan Young
+Date: October 6th, 2025
+Modification History-
+
+Notes:
+This is a global CSS file for the entire site.
+Changes made here will reflect throughout.
+*/
+
+body {
+	background: linear-gradient(to bottom, #67414a, #674b41) fixed;
+	color: #efefec;
+	display: flex;
+	flex-direction: column;
+	margin: 0;
+	height: 100vh;
+	justify-content: center;
+}
+
+header, footer {
+	background-color: #4a6741;
+	color: #ecefec;
+	padding: 5px 0px;
+}
+
+header {
+	text-align: center;
+}
+
+.content {
+	flex: 1;
+	width: 50vw;
+	margin: auto;
+}
+
+footer {
+}
+
+#LMS {
+	font-weight: bold;
+	margin: 0px;
+	border-bottom: dashed;
+	padding-bottom: 2px;
+}
+
+h2 {
+	margin: auto;
+}
+
+#SiteInfo {
+	text-align: center;
+	font-style: italic;
+}
+
+legend {
+	font-size: 115%;
+}

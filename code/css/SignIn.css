@@ -1,0 +1,29 @@
+/*
+Author: Logan Young
+Date: October 6th, 2025
+Modification History-
+
+Notes:
+This is the accompanying CSS file for the Sign In page.
+*/
+
+#SignInForm {
+}
+
+.formField {
+	display: flex;
+	flex-direction: column;
+	padding: 8px;
+	border: solid;
+	margin: 10px 5px;
+}
+
+.formField label {
+	margin: 5px 0px;
+}
+
+#SignInSubmit {
+	margin-top: 10px;
+	align-self: center;
+	margin-left: 85%;
+}

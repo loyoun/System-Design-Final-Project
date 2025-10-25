@@ -1,0 +1,57 @@
+<!--
+Author: Logan Young
+Date: October 6th, 2025
+Modification History-
+
+Notes:
+This is the sign-in page for the LMS UI. Users will choose their account
+level and sign in with an email and password.
+!-->
+
+<!doctype html>
+
+
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<title>Sign In - LMS</title>
+		<link rel="stylesheet" type="text/css" href="css/Global.css">
+		<link rel="stylesheet" type="text/css" href="css/SignIn.css">
+	</head>
+
+	<body>
+		<header>
+			<h1 id="LMS">Library Management System</h1>
+			<h2>Sign In</h2>
+		</header>
+		
+		<div class="content">
+			<form method="POST" id="SignInForm" action="/auth">
+				<fieldset class="formField">
+					<legend>Sign In Form</legend>
+					<label for="accountIn"><span>Account Type:</span>
+						<select name="Account Type" id="accountIn">
+							<option value="member">Member</option>
+							<option value="staff">Staff</option>
+							<option value="administrator">Administrator</option>
+						</select>
+					</label>
+					<label for="emailIn"><span>Email:</span> 
+						<input type="email" name="Email" id="EmailIn" placeholder="YourName@email.com">
+					</label>
+					<label for="passwordIn"><span>Password:</span>
+						<input type="password" name="Password" id="passwordIn" placeholder="Your Password">
+					</label>
+					<input type="submit" value="Submit" id="SignInSubmit">
+				</fieldset>
+			</form>
+		</div>
+		
+		<footer>
+			<p id="DateAccessed"></p>
+			<p id="SiteInfo">Designed by Logan Young</p>
+		</footer>
+	</body>
+	
+</html>

@@ -1,0 +1,111 @@
+/*
+Author: Logan Young
+Date: October 6th, 2025
+Modification History-
+
+Notes:
+This is a CSS file for the Home Page.
+*/
+
+.content {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 0px;
+	width: 100vw;
+}
+
+.userView, .bookView {
+	border: solid;
+	border-style: 5px;
+	overflow: auto;
+}
+
+.bookGrid {
+	display: none;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 5px;
+	padding: 5px;
+	border: dotted;
+}
+
+.viewHeading {
+	text-align: center;
+	font-size: 130%;
+}
+
+#BookSections {
+}
+
+#BookSections ul, #ActionSections ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: auto;
+}
+
+#BookSections ul li, #ActionSections ul li {
+	padding: 2px;
+	float: left;
+	margin: 5px;
+	font-size: 150%;
+	background-color: gray;
+}
+
+#BookSections ul li.active, #ActionSections ul li.active {
+	background-color: #414a67;
+}
+
+#BookSections ul li a, #ActionSections ul li a {
+	color: white;
+	text-align: center;
+}
+
+#UserActions {
+	display: flex;
+	flex-direction: column;
+	overflow: auto;
+}
+
+#SuggestionForm {
+	display: flex;
+	flex-direction: column;
+}
+
+#SuggestionSubmit {
+	width: 65px;
+}
+
+.bookBackground {
+	border-radius: 5px;
+	background-color: #414a67;
+	margin: 2px;
+	text-align: center;
+}
+
+.bookBackground .chosen {
+	background-color: #963939;
+}
+
+#WelcomeMessage {
+	font-size: 110%;
+	font-weight: bold;
+}
+
+.actionTab {
+	display: none;
+}
+
+#Subtitle {
+	display: grid;
+	grid-template-columns: 1fr repeat(1, auto) 1fr;
+	grid-column-gap: 5px;
+	justify-items: center;
+}
+#Subtitle h2 { grid-column-start: 2; }
+#Subtitle #LogOut { 
+	margin: 3px;
+	padding: 2px;
+	margin-left: auto;
+	border-radius: 3px;
+	background-color: #ecefec;
+}
