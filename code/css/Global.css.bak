@@ -15,7 +15,7 @@ body {
 	flex-direction: column;
 	margin: 0;
 	height: 100vh;
-	/* justify-content: center; */
+	justify-content: center;
 }
 
 header, footer {
@@ -55,8 +55,4 @@ h2 {
 
 legend {
 	font-size: 115%;
-}
-
-button {
-	font-size: 16px;
 }

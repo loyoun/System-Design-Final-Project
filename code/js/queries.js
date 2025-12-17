@@ -11,6 +11,15 @@ const con = require('./lms_db_connection.js');
 });*/
 
 
+function getAllBooks() {
+	return new Promise(function(resolve, reject) {
+		con.query('SELECT * FROM books', function(err, result, fields) {
+			if(err) throw err;
+			resolve(result.map(v => Object.assign({}, v)));
+		});
+	});
+};
+
 // Return all titles from books as JSON Map
 function getAllTitles() {
 	return new Promise(function(resolve, reject) {
@@ -40,5 +49,6 @@ function getUserTitles(user_id) {
 // Export module functions
 module.exports = {
 	getAllTitles: getAllTitles(),
-	getUserTitles
+	getUserTitles,
+	getAllBooks
 };

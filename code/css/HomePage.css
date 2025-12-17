@@ -17,15 +17,25 @@ This is a CSS file for the Home Page.
 .userView, .bookView {
 	border: solid;
 	border-style: 5px;
-	overflow: auto;
+	overflow: scroll;
 }
 
+/* .yourBook {
+	background-color: #414a67;
+	opacity: 90%;
+	width: auto;
+} */
+
 .bookGrid {
-	display: none;
+	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	gap: 5px;
 	padding: 5px;
 	border: dotted;
+}
+
+.bookGrid:not(.active) {
+	display:none;
 }
 
 .viewHeading {
@@ -36,14 +46,14 @@ This is a CSS file for the Home Page.
 #BookSections {
 }
 
-#BookSections ul, #ActionSections ul {
+#BookSections ul, .actionSections ul {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
 	overflow: auto;
 }
 
-#BookSections ul li, #ActionSections ul li {
+#BookSections ul li, .actionSections ul li {
 	padding: 2px;
 	float: left;
 	margin: 5px;
@@ -51,11 +61,11 @@ This is a CSS file for the Home Page.
 	background-color: gray;
 }
 
-#BookSections ul li.active, #ActionSections ul li.active {
+#BookSections ul li.active, .actionSections ul li.active {
 	background-color: #414a67;
 }
 
-#BookSections ul li a, #ActionSections ul li a {
+#BookSections ul li a, .actionSections ul li a {
 	color: white;
 	text-align: center;
 }
@@ -86,6 +96,33 @@ This is a CSS file for the Home Page.
 	background-color: #963939;
 }
 
+.detailsPane {
+	position: absolute;
+	top: 35%;
+	left: 35%;
+	height: 30%;
+	width: 30%;
+	background-color: #414a67;
+	opacity: 90%;
+}
+
+.chosen .detailsPane {
+	background-color: #963939;
+}
+
+#ModifiersGrid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-column-gap: 5px;
+	justify-items: center;
+}
+
+#ModifiersButton {
+	font-size: 1rem;
+	display: inline-block;
+	padding: 10px;
+}
+
 #WelcomeMessage {
 	font-size: 110%;
 	font-weight: bold;
@@ -108,4 +145,9 @@ This is a CSS file for the Home Page.
 	margin-left: auto;
 	border-radius: 3px;
 	background-color: #ecefec;
+}
+
+label, input {
+	display: block;
+	margin: 3px;
 }

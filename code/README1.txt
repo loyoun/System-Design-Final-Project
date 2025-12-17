@@ -9,3 +9,7 @@ That command will start the server.
 After that, you can visit "http://localhost:3000" in your preferred browser (I designed using Mozilla Firefox).
 
 Let me know at loyoun@iu.edu if there are any errors, and I'll see if I can figure out how to fix them.
+
+
+NOTE ON OTHER READMES:
+I was not able to complete unit testing, integration testing, or data collection in time. They are not included in this release.

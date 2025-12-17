@@ -1,11 +1,13 @@
 <!--
 Author: Logan Young
 Date: October 6th, 2025
-Modification History-
+Last Modified: December 16th, 2025
 
 Notes:
-This is the sign-in page for the LMS UI. Users will choose their account
-level and sign in with an email and password.
+This is the sign-in page for the LMS UI. 
+Users can sign in with their account or create
+a new account.
+(The "User" account type is equivalent to a "visitor".)
 !-->
 
 <!doctype html>
@@ -29,21 +31,41 @@ level and sign in with an email and password.
 		<div class="content">
 			<form method="POST" id="SignInForm" action="/auth">
 				<fieldset class="formField">
-					<legend>Sign In Form</legend>
+					<legend>Sign In</legend>
 					<label for="accountIn"><span>Account Type:</span>
 						<select name="AccountIn" id="AccountIn">
 							<option value="member">Member</option>
 							<option value="staff">Staff</option>
 							<option value="administrator">Administrator</option>
+							<option value="user">User</option>
 						</select>
 					</label>
-					<label for="emailIn"><span>Email:</span> 
+					<label for="EmailIn"><span>Email:</span> 
 						<input type="email" name="EmailIn" id="EmailIn" placeholder="YourName@email.com">
 					</label>
-					<label for="passwordIn"><span>Password:</span>
+					<label for="PasswordIn"><span>Password:</span>
 						<input type="password" name="PasswordIn" id="PasswordIn" placeholder="Your Password">
 					</label>
 					<input type="submit" value="Submit" id="SignInSubmit">
+				</fieldset>
+			</form>
+			<form method="POST" id="CreateUserForm" action="/create_user">
+				<fieldset class="formField">
+					<legend>Create Account</legend>
+					<!-- <p id="CreateUserMessage"></p> -->
+					<label for="CreateFirstName"><span>First Name:</span>
+						<input type="text" name="CreateFirstName" id="CreateFirstName" placeholder="Your First Name">
+					</label>
+					<label for="CreateLastName"><span>Last Name:</span>
+						<input type="text" name="CreateLastName" id="CreateLastName" placeholder="Your Last Name">
+					</label>
+					<label for="CreateEmail"><span>Email:</span>
+						<input type="email" name="CreateEmail" id="CreateEmail" placeholder="Your Email">
+					</label>
+					<label for="CreatePassword"><span>Password:</span>
+						<input type="password" name="CreatePassword" id="CreatePassword" placeholder="Your Password">
+					</label>
+					<input type="submit" value="Submit" id="CreateUserSubmit">
 				</fieldset>
 			</form>
 		</div>

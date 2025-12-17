@@ -1,10 +1,12 @@
 <!--
 Author: Logan Young
 Date: September 16th, 2025
-Modification History-
+Last Modified: December 16th, 2025
 
 Notes:
-This is the front page for the library management user interface.
+This is the home page for the library management system 
+user interface. It's an EJS (Embedded JavaScript) template that is
+rendered serverside and sent to the client.
 !-->
 
 <!doctype html>
@@ -17,6 +19,7 @@ This is the front page for the library management user interface.
 		<title>Library Management System</title>
 		<link rel="stylesheet" type="text/css" href="css/Global.css">
 		<link rel="stylesheet" type="text/css" href="css/HomePage.css">
+		<link rel="icon" href="data:,">
 	</head>
 
 	<body>
@@ -29,6 +32,8 @@ This is the front page for the library management user interface.
 		</header>
 		
 		<div class="content">
+			<!-- <p class="detailsPane">test</p> -->
+
 			<div class="userView">
 				<h3 class="viewHeading" id="UserViewHeading">User View</h3>
 				<span id="Intro Text">
@@ -48,64 +53,119 @@ This is the front page for the library management user interface.
 					USER
 					<% break; } %>
 					</p>
+					<% if(user.user_type_id != 4) { %>
 					<p id="CheckedOut">Books Currently Checked Out: </p>
-					<% userTitles.forEach(function(userTitle) { %>
-					<span>
-						<p> <%= userTitle.title %> </p>
-					</span>
-					<% }) %>
+					<ul id="UserBooks">
+						<% books.forEach(function(book) {if(book.user_id == user.user_id) { %>
+						<li class="yourBook"> <%= book.title %> by <%= book.author %></p>
+						<% }}) %>
+					</ul>
+					<% } %>
 				</span>
 				
 				<div id="UserActions">
-					<nav id="ActionSections">
-						<ul id="ActionTabLinks">
-							<li onclick="openActionTab(event, 'CheckOutTab')"><a href="#CheckOutTab">Check-Out</a></li>
-							<li onclick="openActionTab(event, 'ReturnTab')"><a href="#ReturnTab">Return</a></li>
-							<li onclick="openActionTab(event, 'SuggestTab')"><a href="#SuggestTab">Suggest</a></li>
-						</ul>
-					</nav>
-					<div class="actionTab" id="CheckOutTab">
-						<form class="actionForm" method="POST">
-							<fieldset id="CheckOutField">
-								<legend>Check Out</legend>
-								<p>Select books to check out in Book View.</p>
-								<input type="button" value="Check Out" id="CheckOutSubmit">
-							</fieldset>
-						</form>
+					<% if(user.user_type_id == 1 || user.user_type_id == 2 || user.user_type_id == 3) {%>
+					<div id="MemberActions">
+						<nav class="actionSections">
+							<ul class="actionTabLinks">
+								<li onclick="openActionTab(event, 'CheckOutTab')"><a href="#CheckOutTab">Check-Out</a></li>
+								<li onclick="openActionTab(event, 'ReturnTab')"><a href="#ReturnTab">Return</a></li>
+								<li onclick="openActionTab(event, 'SuggestTab')"><a href="#SuggestTab">Suggest</a></li>
+							</ul>
+						</nav>
+						<div class="actionTab" id="CheckOutTab">
+							<form class="actionForm" method="POST">
+								<fieldset id="CheckOutField">
+									<legend>Check Out</legend>
+									<p id="CheckOutMessage">Select a book to check out in the Book View.</p>
+									<input type="button" value="Check Out" id="CheckOutSubmit">
+								</fieldset>
+							</form>
+						</div>
+						<div class="actionTab" id="ReturnTab">
+							<form class="actionForm" method="POST">
+								<fieldset id="ReturnField">
+									<legend>Return</legend>
+									<p id="ReturnMessage">Select a book to return in the Book View.</p>
+									<input type="button" value="Return" id="ReturnSubmit">
+								</fieldset>
+							</form>
+						</div>
+
+						<!--<fieldset id="HoldField">
+							<legend>Request Hold</legend>
+							<p>Select a book to request a hold on in Book View.</p>
+							<input type="button" value="Request Hold">
+						</fieldset>
+						<fieldset id="ProcurementRequest">
+							<legend>Procure</legend>
+							<p>Select a book to request procurement from another branch in Book View.</p>
+							<input type="button" value="Request Procurement">
+						</fieldset>-->
+
+						<div class="actionTab" id="SuggestTab">
+							<form class="actionForm" id="SuggestionForm" method="POST">
+								<fieldset id="SuggestionField">
+									<legend>Suggest Book</legend>
+										<p id="SuggestMessage">Suggest a book for us to add to our library!</p>
+										<label for="AuthorIn"><span>Author Name:</span>
+											<input type="text" name="SuggestAuthor" id="AuthorIn" placeholder="Author Name">
+										</label>
+										<label for="TitleIn"><span>Book Title:</span>
+											<input type="text" name="SuggestTitle" id="TitleIn" placeholder="Book Title">
+										</label>
+										<input type="button" value="Suggest" id="SuggestSubmit">
+								</fieldset>
+							</form>
+						</div>
 					</div>
-					<div class="actionTab" id="ReturnTab">
-						<form class="actionForm" method="POST">
-							<fieldset id="ReturnField">
-								<legend>Return</legend>
-								<p>Select books to return in Book View.</p>
-								<input type="button" value="Return" id="ReturnSubmit">
-							</fieldset>
-						</form>
-					</div>
-					<!--<fieldset id="HoldField">
-						<legend>Request Hold</legend>
-						<p>Select a book to request a hold on in Book View.</p>
-						<input type="button" value="Request Hold">
-					</fieldset>
-					<fieldset id="ProcurementRequest">
-						<legend>Procure</legend>
-						<p>Select a book to request procurement from another branch in Book View.</p>
-						<input type="button" value="Request Procurement">
-					</fieldset>-->
-					<div class="actionTab" id="SuggestTab">
-						<form class="actionForm" method="POST">
-							<fieldset id="SuggestionField">
-								<legend>Suggest Book</legend>
-									<label for="authorIn"><span>Author Name:</span>
-										<input type="text" name="Author" id="authorIn" placeholder="Author Name">
+					<% } %>
+					<% if(user.user_type_id == 2 || user.user_type_id == 3) {%>
+					<div id="StaffActions">
+						<nav class="actionSections">
+							<ul class="actionTabLinks">
+								<li onclick="openActionTab(event, 'EditBookTab')"><a href="#EditBookTab">Edit Book</a></li>
+								<li onclick="openActionTab(event, 'ManageUserTab')"><a href="#ManageUserTab">Manage Users</a></li>
+							</ul>
+						</nav>
+						<div class="actionTab" id="EditBookTab">
+							<form class="actionForm" method="POST" id="EditBookForm">
+								<fieldset id="EditBookField">
+									<legend>Edit Book</legend>
+									<p id="EditBookMessage">Select a book to edit or create a new book.</p>
+									<label for="EditBook"><span>Edit Book</span>
+										<input type="radio" name="EditType" id="EditBook" value="edit">
+									<label for="CreateBook"><span>Create Book</span>
+										<input type="radio" name="EditType" id="CreateBook" value="create">
+									<label for="EditTitle"><span>Edit Title:</span>
+										<input type="text" name="EditTitle" id="EditTitle" placeholder="New Title">
 									</label>
-									<label for="bookIn"><span>Book Title:</span>
-										<input type="text" name="BookTitle" id="bookIn" placeholder="Book Title">
+									<label for="EditAuthor"><span>Edit Author:</span>
+										<input type="text" name="EditAuthor" id="EditAuthor" placeholder="New Author">
 									</label>
-									<input type="button" value="Suggest" id="SuggestSubmit">
-							</fieldset>
-						</form>
+									<label for="EditGenre"><span>Edit Genre:</span>
+										<input type="text" name="EditGenre" id="EditGenre" placeholder="New Genre">
+									</label>
+									<label for="EditPubDate"><span>Edit Publication Date:</span>
+										<input type="text" name="EditPubDate" id="EditPubDate" placeholder="1970-01-01">
+									</label>
+									<label for="EditISBN"><span>Edit ISBN:</span>
+										<input type="text" name="EditISBN" id="EditISBN" placeholder="0123456789012">
+									</label>
+									<input type="button" value="Edit Book" id="EditBookSubmit">
+								</fieldset>
+							</form>
+						</div>
+						<div class="actionTab" id="ManageUserTab">
+							<form class="actionForm" method="POST" id="ManageUserForm">
+								<fieldset id="ManageUserField">
+									<legend>Manage Users</legend>
+									<p id="ManageUserMessage">Select a user to manage.</p>
+								</fieldset>
+							</form>
+						</div>
 					</div>
+					<% } %>
 				</div>
 			</div>
 			
@@ -120,32 +180,75 @@ This is the front page for the library management user interface.
 						<li onclick="openBookTab(event, 'YourBookGrid')"><a href="#YourBooks">Your Books</a></li>
 					</ul>
 				</nav>
-				<div class="bookGrid" id="LibraryBookGrid">
-					<% allTitles.forEach(function(title) { %>
+				<div class="bookGrid active" id="LibraryBookGrid">
+					<% books.forEach(function(book) { %>
 					<div class="bookBackground">
-						<span> <%= title.title %> </span>
+						<span data-id=<%= book.local_id %>> <%= book.title %></span>
 					</div>
 					<% }) %>
 				</div>
 				<div class="bookGrid" id="YourBookGrid">
-					<% userTitles.forEach(function(userTitle) { %>
+					<% books.forEach(function(book) {if(book.user_id == user.user_id) { %>
 					<div class="bookBackground">
-						<span> <%= userTitle.title %> </span>
+						<span data-id=<%= book.local_id %>> <%= book.title %></span>
 					</div>
-					<% }) %>
+					<% }}) %>
+				</div>
+				<div id="Modifiers">
+					<!--<button type="button" id="getGenres" value="Genres">
+					 <div id="genres">
+						<p></p>
+					</div> -->
+					<form id="ModifiersForm" method="GET">
+						<div id="ModifiersGrid">
+							<fieldset id="FilterSet" form="ModifiersForm">
+								<legend>Filters</legend>
+								<label for="TitleContains">Title Contains: </label>
+									<input type="text" id="TitleContains" name="Title">
+								<label for="AuthorContains">Author Contains: </label>
+									<input type="text" id="AuthorContains" name="Author">
+								<label for="GenreContains">Genre Contains: </label>
+									<input type="text" id="GenreContains" name="Genre">
+								<label for="StatusIs">Availability Is: </label>
+									<select id="StatusIs" name="Status">
+										<option value="ANY">[Any]</option>
+										<option value="AVAILABLE">Available</option>
+										<option value="CHECKED_OUT">Checked Out</option>
+										<option value="ON_HOLD">On Hold</option>
+										<option value="UNAVAILABLE">Unavailable</option>
+									</select>
+							</fieldset>
+							<fieldset id="SortSet" form="ModifiersForm">
+								<legend>Sort</legend>
+								<p id="SortMessage">Sort by <select name="Sort" id="SelectSort">
+									<option value="title">Title</option>
+									<option value="author">Author</option>
+									<option value="genre">Genre</option>
+									<option value="pub_date">Publication Date</option>
+									<option value="status">Availability</option>
+									<option value="local_id">ID</option>
+								</select> in <select name="Order" id="SelectSortOrder">
+									<option value="ascending">Ascending</option>
+									<option value="descending">Descending</option>
+								</select> order.</p>
+							</fieldset>
+						</div>
+						<button type="button" value="Submit" id="ModifiersButton"></button>
+					</form>
 				</div>
 			</div>
 			
 		</div>
 		
+
 		<footer>
 			<p id="DateAccessed"></p>
 			<p id="SiteInfo">Designed by Logan Young</p>
 		</footer>
 		
+
 		<span id="UserJSON" hidden><%= user %></span>
-		<span id="AllBooksJSON" hidden><%= allTitles %></span>
-		<span id="UserBooksJSON" hidden><%= userTitles %></span>
+		<span id="BooksJSON" hidden><%= books %></span>
 		<script src="/js/HomePage.js"></script>
 	</body>
 </html>

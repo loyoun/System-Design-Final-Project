@@ -22,7 +22,7 @@ This is the accompanying CSS file for the Sign In page.
 	margin: 5px 0px;
 }
 
-#SignInSubmit {
+input[type="submit"] {
 	margin-top: 10px;
 	align-self: center;
 	margin-left: 85%;
